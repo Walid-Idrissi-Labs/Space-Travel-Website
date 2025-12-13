@@ -341,13 +341,34 @@ select{
     opacity: 1;
 }
 
+
+
+/* PRIMARY HEADER */
+.logo{
+     margin: 1.5rem clamp(1.5rem , 5vh , 3.5rem ); 
+
+}
+
+
+.primary-header{
+
+    justify-content: space-between ;
+    align-items: center;
+}
+
+
+/* mobile first design */
 .primary-navigation {
-    --gap: 8rem;
+    /* --gap: 8rem; */
     --underline-gap: 2rem;
     list-style: none;
-    padding: 0;
+    padding : 0;
     margin: 0;
+    background-color: hsl(var(--clr-dark)/ .95);
+    --gap: clamp(1.5rem, 5vw, 3.5rem);
+
 }
+
 
 .primary-navigation a {
     text-decoration: none;
@@ -356,7 +377,174 @@ select{
 .primary-navigation a > span {
     font-weight: 700;
     margin-right: .5em;
+}  
+
+@supports (backdrop-filter: blur(1rem)) {
+    .primary-navigation {
+        background: hsl( var(--clr-white) / 0..05);
+        backdrop-filter: blur(1.5rem);
+    }
 }
+
+
+
+/* by default, unless we're on mobile (default = big screens) here */
+.mobile-nav-toggle{
+    display: none;
+}
+
+
+@media (max-width:35rem){
+    .primary-navigation {
+    /* --gap: 8rem; */
+    --underline-gap: .5rem;
+    position:fixed; /*outside of the normal flow*/ 
+    z-index: 1000;
+    inset : 0 0 0 20%;
+    list-style: none;
+
+    /* add a little extra top padding on mobile to avoid content touching the viewport edge */
+    padding-top: min(20rem, 15vh);
+    margin: 0;
+    flex-direction: column;
+
+    transform: translatex(100%);
+    transition: transform 700ms ease-in-out;
+    
+    /* top:0;
+    right:0;
+    bottom: 0;
+    left: 20%;; */
+    /* theres also a SHORTHAND for all of these : "inset" */
+    }
+
+    
+    .primary-navigation.underline-indicators > .active{
+        /* the added specificity isnt necessary, since we use IDs when its needed */
+        /* and we cant really modify all of the underline-indicators, since we still need them for tabs */
+        /* so this is the right place oto put them  */
+        border: 0;
+    }
+
+    .primary-navigation[data-visible="true"]{
+        transform : translatex(0);
+    }
+
+
+
+    .mobile-nav-toggle{
+        display: block;
+        position: absolute;
+        z-index: 1001;
+        right:1rem;
+        top:2rem;
+        background:transparent;
+        background-image: url("assets/shared/icon-hamburger.svg");
+        background-repeat: no-repeat; 
+        /* because the image might repeat itself downward and make it look weird */
+
+        width: 1.5rem;
+        aspect-ratio: 1/1;
+        border:0;
+
+
+}
+
+    .mobile-nav-toggle[aria-expanded="true"] {
+        background-image: url(./assets/shared/icon-close.svg);
+    }
+
+
+    /* fix the blue outline, even though its not really a problem anymore in browsers */
+    .mobile-nav-toggle.mobile-nav-toggle:focus-visible  {
+        outline : 2px solid rgb(43, 44, 74);
+        outline-offset: 5px;
+    }
+
+    /* COPILOT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/ 
+    /* Disable hover & active visual changes on touch / small screens */
+    /* Touch devices shouldn't rely on hover; keep styles neutral on mobile */
+    /* .large-button::after {
+        transition: none            !important;
+        opacity: 0                  !important;
+        transform: none             !important;
+    }
+
+    .large-button:hover::after,
+    .large-button:focus::after {
+        opacity: 0                  !important;
+        transform: none             !important;
+    }
+
+    .underline-indicators a,
+    .underline-indicators button {
+        border-bottom-color: transparent !important;
+        color: inherit !important;
+    }
+
+    .underline-indicators a:hover,
+    .underline-indicators button:hover,
+    .underline-indicators a:focus,
+    .underline-indicators button:focus {
+        border-color: transparent !important;
+        outline: none !important;
+        color: inherit !important;
+    }
+
+     Prevent active/selected state from changing appearance on mobile 
+    .underline-indicators .active,
+    .underline-indicators [aria-selected="true"] {
+        color: inherit !important;
+        border-color: transparent !important;
+    }
+
+     Neutralize dot indicators hover/active 
+    .dot-indicators > *:hover,
+    .dot-indicators > *:focus{
+        background-color: hsl(var(--clr-white) / .25) !important;
+    }
+
+    .dot-indicators > [aria-selected="true"] {
+        background-color: hsl(var(--clr-white) / .25) !important;
+    } */
+}
+
+
+@media (min-width: 35em) {
+    .primary-navigation {
+        padding-inline: clamp(3rem, 7vw, 7rem);
+    }
+}
+
+@media (min-width: 35em) and (max-width: 44.999em) {
+    .primary-navigation a > span {
+        display: none;
+    }
+}
+
+@media (min-width: 45em) {
+    .primary.header::after{
+        content:"";
+        display:block;
+        position:relative;
+        width:100%;
+        height:1px;
+        background: hsl(var(--clr-white) / .25);;
+        order:1;
+        margin-right:-3rem;
+         
+    }
+
+    nav {
+        order: 2;
+    }
+
+     .primary-navigation {
+        margin-block: 2rem;
+
+    }
+}
+
 
 .underline-indicators {
     display: flex;
@@ -378,7 +566,7 @@ select{
     display: inline-block;
     padding: var(--underline-gap, 1rem) 0;
     border-bottom: .2rem solid transparent;
-    transition: border-color 200ms ease, color 200ms ease;
+    transition: border-color 400ms ease, color 300ms ease;
 }
 
 .underline-indicators a:hover,
