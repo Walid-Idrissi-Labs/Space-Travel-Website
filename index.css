@@ -12,7 +12,7 @@
     --fs-800:3.5rem;
     --fs-700:1.5rem;
     --fs-600:1rem;
-    --fs-500:1.75rem;
+    --fs-500:1rem;
     --fs-400:0.9375rem;
     --fs-300:1rem;
     --fs-200:0.875rem;
@@ -31,7 +31,7 @@
     --fs-800:5rem;
     --fs-700:2.5rem;
     --fs-600:1.5rem;
-
+    --fs-500: 1.25rem;    
     --fs-400:1rem;
     }
 }
@@ -44,7 +44,7 @@
     --fs-800:6.25rem;
     --fs-700:3.5rem;
     --fs-600:2rem;
-
+    --fs-500: 1.75rem;
     --fs-400:1.125rem;
 
     }
@@ -165,6 +165,10 @@ select{
     /*outline: 1px solid red; */
 }
 
+.flow--space-small {
+    --flow-space: .75rem;
+}
+
 .container{
     padding-inline: 2em;
     margin-inline: auto;
@@ -173,48 +177,7 @@ select{
 }
 
 
-/* mobile-first approach */
-.grid-container{
-    display: grid; 
-    text-align:center;
-    place-items: center;
-    /* border: 5px dashed lime; */
-    /* grid-template-columns: 2em  20em 5em 20em  2em; */
-    padding-inline: 1rem;
-}
 
-.grid-container * {
-    max-width: 50ch; /*ch =character*/
-}
-
-
-@media (min-width:45rem) {
-    .grid-container{
-        
-        text-align: left;
-        column-gap : var(--container-gap , 2rem);
-        /* so the middle column to resize auto */
-        grid-template-columns: /*1:*/minmax(1rem ,1fr)  /*2 & 3:*/repeat(2,minmax(0 , 40rem)) /*4:*/minmax(1rem,1fr); /*fr : all the available space left r*/ 
-    }
-
-
-    .grid-container > *:first-child {
-    grid-column: 2;
-    /* in out grid-template-columns */
-    /* outline: 1px solid red; */
-    }
-
-    .grid-container > *:last-child{
-    grid-column: 3;
-    /* in out grid-template-columns */
-    /* outline: 1px solid red; */
-    }
-
-    .grid-container--home{
-        padding-bottom: max(6rem , 20vh);
-        align-items:end;
-    }
-}
 
 
 
@@ -596,22 +559,20 @@ select{
 
 
 .dot-indicators > * {
-    cursor : pointer;
-    border:0;
+    cursor: pointer;
+    border: 0;
     border-radius: 50%;
-    aspect-ratio: 1/1;
-    padding:.5em;
-    background-color: hsl(var(--clr-white) / .25);
+    padding: .5em;
+    background-color: hsl( var(--clr-white) / .25);
 }
-
-.dot-indicators >*:hover,
-.dot-indicators >*:focus{
+ 
+.dot-indicators > *:hover,
+.dot-indicators > *:focus { 
     background-color: hsl( var(--clr-white) / .5);
-    
 }
 
 .dot-indicators > [aria-selected="true"] {
-    background-color: hsl(var(--clr-white) / 1);
+    background-color: hsl( var(--clr-white) / 1); 
 }
 
 
@@ -626,6 +587,12 @@ body{
     background-size: cover;
     background-position: bottom center;
 }
+
+
+
+
+
+
 
 .home{
     /* Use a relative path (no leading slash) so the image loads correctly
@@ -651,3 +618,236 @@ body{
 }
 }
 
+
+
+/* ------------------------------------------------------------------------------------------------ */
+
+.destination{
+    /* Use a relative path (no leading slash) so the image loads correctly
+       when opening `index.html` from the filesystem or a subpath. */
+    background-image: url(./assets/destination/background-destination-mobile.jpg);
+}
+
+
+@media (min-width: 35rem){
+    .destination{
+    /* Use a relative path (no leading slash) so the image loads correctly
+       when opening `index.html` from the filesystem or a subpath. */
+    background-position: center center;
+    background-image: url(/.assets/destination/background-destination-tablet.jpg);
+}
+}
+
+@media (min-width: 45rem){
+    .destination{
+    /* Use a relative path (no leading slash) so the image loads correctly
+       when opening `index.html` from the filesystem or a subpath. */
+    background-image: url(./assets/destination/background-destination-desktop.jpg);
+}
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------ */
+
+.crew{
+    /* Use a relative path (no leading slash) so the image loads correctly
+       when opening `index.html` from the filesystem or a subpath. */
+    background-image: url("assets/crew/background-crew-mobile.jpg");
+}
+
+
+@media (min-width: 35rem){
+    .crew{
+    /* Use a relative path (no leading slash) so the image loads correctly
+       when opening `index.html` from the filesystem or a subpath. */
+    background-position: center center;
+    background-image: url("assets/crew/background-crew-tablet.jpg");
+}
+}
+
+@media (min-width: 45rem){
+    .crew{
+    /* Use a relative path (no leading slash) so the image loads correctly
+       when opening `index.html` from the filesystem or a subpath. */
+    background-image: url("assets/crew/background-crew-desktop.jpg");
+}
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------ */
+
+
+/* --------------------------------------------------------------------------------- */
+/* GRID CONTAINER */
+/* LAYOUT */
+/* --------------------------------------------------------------------------------- */
+
+
+/* mobile-first approach */
+.grid-container{
+    display: grid; 
+    text-align:center;
+    place-items: center;
+    /* border: 5px dashed lime; */
+    /* grid-template-columns: 2em  20em 5em 20em  2em; */
+    padding-inline: 1rem;
+    padding-bottom:4rem
+}
+
+.grid-container p:not([class]){  /*ANY PARAGPRGH THAT DOESNT HAVE A CLASS TO IT*/
+    max-width: 50ch; /*ch =character*/
+}
+
+.numbered-title{
+    grid-area: title;
+}
+
+.grid-container--destination{
+    --flow-space:2rem;
+    grid-template-areas: 'title' 'image' 'tabs' 'content';
+}
+
+
+.grid-container--destination > picture {
+    grid-area: image;
+    max-width: 60%;
+}
+.grid-container--destination > .tab-list {
+    grid-area: tabs;
+}
+
+.grid-container--destination > .destination-info {
+    grid-area: content;
+}
+
+.destination-meta{
+    flex-direction: column;
+    border-top : 1px solid hsl( var(--clr-white) / 0.1);
+    padding-top: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.destination-meta p {
+    /* P NESTED INSIDE DESTINATION META */
+    font-size: 1.75rem
+}
+
+
+/* -------------------------------------------------------------------------------------------- */
+/* CREW LAYOUT */
+/* -------------------------------------------------------------------------------------------- */
+
+.grid-container--crew{
+    --flow-space:2rem;
+    grid-template-areas: 'title' 'image' 'tabs' 'content';
+}
+
+.grid-container--crew > picture {
+    grid-area: image;
+    max-width: 60%;
+    border-bottom: 1px solid hsl( var(--clr-white) / .1);
+}
+.grid-container--crew > .dot-indicators {
+    grid-area: tabs;
+}
+
+.grid-container--crew > .crew-details {
+    grid-area: content;
+}
+
+.crew-details h2 {
+    opacity: .5;
+}
+
+
+@media (min-width:35rem){
+    .numbered-title{
+        justify-self: start;
+        margin-top: 2rem
+    }
+    .destination-meta{
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .grid-container--crew {
+    grid-template-areas: 
+        'title'
+        'content'
+        'tabs'
+        'image';
+        padding-bottom: 0;
+}
+
+}
+
+
+/* BIG SCREEN */
+@media (min-width:45rem) {
+    .grid-container{
+        
+        text-align: left;
+        column-gap : var(--container-gap , 2rem);
+        /* so the middle column to resize auto */
+        grid-template-columns: /*1:*/minmax(1rem ,1fr)  /*2 & 3:*/repeat(2,minmax(0 , 40rem)) /*4:*/minmax(1rem,1fr); /*fr : all the available space left r*/ 
+    }
+
+
+    .grid-container--home > *:first-child {
+    grid-column: 2;
+    /* in out grid-template-columns */
+    /* outline: 1px solid red; */
+    }
+
+    .grid-container--home > *:last-child{
+    grid-column: 3;
+    /* in out grid-template-columns */
+    /* outline: 1px solid red; */
+    }
+
+    .grid-container--home{
+        padding-bottom: max(6rem , 20vh);
+        align-items:end;
+    }
+
+    .grid-container--destination{
+        justify-items: start;
+        align-content: start;
+        grid-template-areas: 
+        /* each one takes up 4 things (in the grid-template-cols), but how and why */
+        '. title title .'   
+        '. image tabs .'
+        '. image content .'
+        ;
+        /*  . : emplty */
+    }   
+
+    .grid-container--destination > picture,
+    .grid-container--crew        > picture {
+        max-width: 90%;
+    }
+
+    .destination-meta{
+        justify-content: start;
+        --gap: min(6vw, 6rem);
+    }
+
+        
+    .grid-container--crew {
+        grid-template-areas: 
+            '. title title .'
+            '. content image .'
+            '. tabs image .';
+    }
+
+    .grid-container--crew > .dot-indicators{
+        justify-self: start;
+    }
+
+    .grid-container--crew > picture {
+        align-self: end;
+    }
+
+}
