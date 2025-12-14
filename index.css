@@ -112,7 +112,7 @@ body {
 img,
 picture {
     max-width: 100%; /* Make images responsive */
-    display: block; /* Remove bottom space under images */
+    display: block; /* Remove bottom space under images */ 
 }
 
 
@@ -300,7 +300,7 @@ select{
 
     opacity: 0;
     transform: scale(1 );
-    transition: opacity 500ms linear , transform 750ms ease-in-out;
+    transition: opacity 700ms linear , transform 750ms ease-in-out;
 
 }
 
@@ -314,6 +314,15 @@ select{
 /* PRIMARY HEADER */
 .logo{
      margin: 1.5rem clamp(1.5rem , 5vh , 3.5rem ); 
+
+     transition : transform 500ms ease-in-out , opacity 300ms ease-in-out;
+
+}
+
+.logo:hover, .logo:active{
+    transform : rotate(360deg) scale(1,1);
+    opacity : 0.8;
+
 
 }
 
