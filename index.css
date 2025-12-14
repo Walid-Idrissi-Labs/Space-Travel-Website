@@ -116,6 +116,11 @@ picture {
 }
 
 
+/* Respect the HTML `hidden` attribute — ensure hidden elements are not displayed. */
+[hidden] {
+    display: none !important;
+}
+
 /* forms elements easier to work with */
 
 input,
@@ -634,7 +639,7 @@ body{
     /* Use a relative path (no leading slash) so the image loads correctly
        when opening `index.html` from the filesystem or a subpath. */
     background-position: center center;
-    background-image: url(/.assets/destination/background-destination-tablet.jpg);
+    background-image: url(./assets/destination/background-destination-tablet.jpg);
 }
 }
 
@@ -713,6 +718,7 @@ body{
 .grid-container--destination > picture {
     grid-area: image;
     max-width: 60%;
+    align-self: start;
 }
 .grid-container--destination > .tab-list {
     grid-area: tabs;
@@ -851,3 +857,5 @@ body{
     }
 
 }
+
+
