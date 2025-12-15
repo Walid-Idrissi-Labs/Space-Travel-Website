@@ -326,6 +326,41 @@ select{
 
 }
 
+.glow-hover{
+    transition : transform 500ms ease-in-out , opacity 300ms ease-in-out;
+}
+
+.glow-hover:hover, .glow-hover:focus{
+
+    transform : scale(1.05);
+    opacity: 0.8;
+    
+    
+
+}
+
+
+
+@keyframes glowColor{
+    0%,100%
+    {
+      --clr-white: 0 0% 100%;  
+    }
+    50%
+    {
+     /* --clr-white: 215 35% 12%;    */
+    }
+}
+
+
+.text-white.glow-hover:hover, .text-white.glow-hover:focus{
+    animation: glowColor 0.5s ease-in-out infinite;
+}
+
+.text-white.glow-hover:hover{
+    opacity : 0.5;
+}
+
 
 .primary-header{
 
